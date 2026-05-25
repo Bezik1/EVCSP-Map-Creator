@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-secondary);
+  font-family: var(--text-font-primary);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 100vw;
+}
+
+article {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;;
+  justify-content: flex-start;
+}
+
+.glass {
+  background-color: rgba(33, 33, 33, 0.451);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}

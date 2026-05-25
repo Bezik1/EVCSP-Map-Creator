@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+  --bg-color-primary: #212121;
+  --bg-color-secondary: #292929;
+  --bg-color-input: #1a1a1a;
+  --bg-color-alternative: #D9D9D9;
+
+  --text-color-primary: #D9D9D9;
+  --text-color-secondary: #939292;
+  --text-color-alternative: #292929;
+
+  --border-color-primary: #ABAAAA;
+  --border-color-secondary: #7e7e7e;
+
+  --text-font-primary: 'Lato', sans-serif;
+  --text-font-secondary: 'Roboto', sans-serif;
+  --text-font-special: 'Caveat', cursive;
+
+  --text-size-primary: 16px;
+  --text-size-secondary: 12px;
+  --text-size-header: 38px;
+  --text-size-special: 30em;
+
+  --border-width-primary: 2px;
+  --border-width-color: #D9D9D9;
+
+  --padding-primary: 10px;
+
+  --margin-input: 8px;
+  --margin-label: 16px;
+  --margin-label-bottom: 2px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
