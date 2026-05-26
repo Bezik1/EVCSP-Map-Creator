@@ -1,0 +1,37 @@
+.map-container {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 1), 1fr);
+    grid-template-rows: repeat(var(--grid-rows, 1), 1fr);
+    gap: 2px;
+    background-color: var(--bg-color-secondary);
+    border: var(--border-width-primary) solid var(--border-color-primary);
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 75%;
+    max-height: 75%;
+    margin: 0 0 20px 5%;
+    overflow: hidden;
+    padding: 4px;
+    user-select: none;
+}
+
+.map-cell {
+    aspect-ratio: 1 / 1;
+    color: var(--text-color-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: var(--text-font-secondary);
+    font-size: 0.6rem;
+    transition: background-color 0.1s ease;
+    cursor: crosshair;
+    min-width: 0;
+    min-height: 0;
+    width: min(calc((50vw - 120px) / var(--grid-columns)),
+            calc((75vh - 120px) / var(--grid-rows)));
+    box-sizing: border-box;
+}
+
+.map-cell:hover {
+    filter: brightness(1.2);
+    border-color: var(--text-color-primary);
+}
