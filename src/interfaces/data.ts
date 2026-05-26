@@ -11,5 +11,5 @@ export type MapNameType =
 
 export type MapType = {
     type: MapNameType
-    map: number[][]
+    map: (number | typeof Infinity)[][]
 }
