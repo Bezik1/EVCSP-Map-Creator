@@ -28,18 +28,21 @@ export default function CurrentMap() {
         ))
     }, [maps, currentMap, setMaps])
 
-useEffect(() => {
-    const currentGrid = maps.find(m => m.type === currentMap)?.map;
+    useEffect(() => {
+        const currentGrid = maps.find(m => m.type === currentMap)?.map;
 
-    const newGrid = Array.from({ length: height }, (_, y) =>
-        Array.from({ length: width }, (_, x) => {
-            const oldVal = currentGrid?.[y]?.[x];
-            return oldVal !== undefined ? oldVal : 0;
-        })
-    );
+        const needsResize = !currentGrid || currentGrid.length !== height || (currentGrid[0]?.length !== width);
 
-        updateGlobalMap(newGrid);
-    }, [width, height]); 
+        if (needsResize) {
+            const newGrid = Array.from({ length: height }, (_, y) =>
+                Array.from({ length: width }, (_, x) => {
+                    const oldVal = currentGrid?.[y]?.[x];
+                    return oldVal !== undefined ? oldVal : 0;
+                })
+            );
+            updateGlobalMap(newGrid);
+        }
+    }, [width, height, currentMap]); 
 
     const maxVal = useMemo(() => {
         const flat = grid.flat().filter(v => v !== Infinity)
