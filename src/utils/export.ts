@@ -13,7 +13,9 @@ export const exportMapData = (width: number, height: number, maps: MapType[]) =>
         }, {} as Record<string, number[][]>)
     };
 
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObject));
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(
+        JSON.stringify(exportObject, null, 2)
+    );
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download", "maps.json");

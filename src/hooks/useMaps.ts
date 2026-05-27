@@ -9,7 +9,7 @@ export const MapsContext = createContext<IMapsContext>({
         DEFAULT_POI_MAP,
         DEAFULT_DISTANCES_MAP
     ],
-    currentMap: 'distances_map'
+    currentMap: 'distances_map',
 })
 
 export const useMaps = () => {

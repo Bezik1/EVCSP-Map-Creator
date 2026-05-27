@@ -1,36 +1,53 @@
 import { useState, useMemo, useEffect, useCallback } from "react"
 import Map from "../components/Map"
 import { useMapSettings } from "../hooks/useMapSettings"
-import { DEFAULT_MAX_COLOR, DEFAULT_MIN_COLOR } from "../const/mapSettings"
 import { useMaps } from "../hooks/useMaps"
 
 export default function CurrentMap() {
     const { mapSettings } = useMapSettings()
     const { width, height } = mapSettings
+    const { maps, setMaps, currentMap } = useMaps()
 
     const [selectedValue, setSelectedValue] = useState<number>(10)
-    const [colorMin, setColorMin] = useState(DEFAULT_MIN_COLOR)
-    const [colorMax, setColorMax] = useState(DEFAULT_MAX_COLOR)
     const [isMouseDown, setIsMouseDown] = useState(false)
-
-    const { maps, setMaps, currentMap } = useMaps()
 
     const currentMapData = useMemo(() => 
         maps.find(el => el.type === currentMap), 
-    [maps, currentMap])
-
+        [maps, currentMap])
+    
     const grid = currentMapData?.map || []
+    const colorMin = currentMapData?.colorMap.minColor || "#212121"
+    const colorMax = currentMapData?.colorMap.maxColor || "#ff4757"
+
+    const updateGlobalColor = (newMinColor: string, newMaxColor: string) => {
+        if (!setMaps) return
+        setMaps(maps.map(m => 
+            m.type === currentMap
+                ? {
+                    ...m,
+                    colorMap: {
+                        minColor: newMinColor,
+                        maxColor: newMaxColor
+                    }
+                }
+                : m
+        ))
+    }
 
     const updateGlobalMap = useCallback((newGrid: number[][]) => {
         if (!setMaps) return
         setMaps(maps.map(m => 
-            m.type === currentMap ? { ...m, map: newGrid } : m
+            m.type === currentMap
+                ? {
+                    ...m,
+                    map: newGrid
+                }
+                : m
         ))
-    }, [maps, currentMap, setMaps])
+    }, [currentMap, setMaps, maps])
 
     useEffect(() => {
-        const currentGrid = maps.find(m => m.type === currentMap)?.map;
-
+        const currentGrid = currentMapData?.map;
         const needsResize = !currentGrid || currentGrid.length !== height || (currentGrid[0]?.length !== width);
 
         if (needsResize) {
@@ -42,7 +59,7 @@ export default function CurrentMap() {
             );
             updateGlobalMap(newGrid);
         }
-    }, [width, height, currentMap]); 
+    }, [width, height, currentMap, currentMapData, updateGlobalMap]); 
 
     const maxVal = useMemo(() => {
         const flat = grid.flat().filter(v => v !== Infinity)
@@ -97,8 +114,16 @@ export default function CurrentMap() {
                 >
                     {selectedValue === Infinity ? "SET NUM" : "SET INF"}
                 </button>
-                <input type="color" value={colorMin} onChange={(e) => setColorMin(e.target.value)} />
-                <input type="color" value={colorMax} onChange={(e) => setColorMax(e.target.value)} />
+                <input 
+                    type="color" 
+                    value={colorMin} 
+                    onChange={(e) => updateGlobalColor(e.target.value, colorMax)} 
+                />
+                <input 
+                    type="color" 
+                    value={colorMax} 
+                    onChange={(e) => updateGlobalColor(colorMin, e.target.value)} 
+                />
             </div>
             <Map 
                 map={grid} 

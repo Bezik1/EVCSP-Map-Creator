@@ -3,6 +3,11 @@ export interface MapSettings {
     height: number
 }
 
+export interface ColorMap {
+    minColor: string
+    maxColor: string
+}
+
 export type MapNameType = 
     'distances_map' |
     'poi_map' |
@@ -12,4 +17,5 @@ export type MapNameType =
 export type MapType = {
     type: MapNameType
     map: (number | typeof Infinity)[][]
+    colorMap: ColorMap
 }
