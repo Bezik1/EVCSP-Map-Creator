@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+# EVCSP-Map-Creator
+EVCSP frontend. This part of the application was written, using: React, Typescript and Vite.
+The main purpose is to write custom maps required, by optimization part of the project, with the
+custom user-friendly map-creation interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Commands
+```bash
+# install dependencies
+npm install
 
-Currently, two official plugins are available:
+# build command
+npm run build
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# start command
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Maps
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Distances Map
+Represents obstacles and costs from travelling from
+given node to another.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# Electric-Vehicle_Charging-Station-Problem-Frontend
-# Electric-Vehicle_Charging-Station-Problem-Frontend
+<img src="public/assets/distance_map.png">
+
+### Point Of Intrest (POI) Map
+Represents the locations, where we possibly can build
+our electric vehicle charging stations.
+
+<img src="public/assets/poi_map.png">
+
+### Demand Map
+Represents energy consumption demand of electric vehicle users,
+at a given piece of terrain.
+
+<img src="public/assets/demand_map.png">
+
+### Land Rental Cost Map
+Represents rental cost of specific point of intreset on the map.
+
+<img src="public/assets/land_rental_cost_map.png">
+
+
+## Tech Stack
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,react,typescript,git" />
+  </a>
+</p>
+ 
